@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <base target="_top">
+    <!-- styles -->
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
+    <?!= HtmlService.createHtmlOutputFromFile('Styles').getContent(); ?>
+</head>
+<body>
+
+    <!-- layout -->
+    <?!= HtmlService.createHtmlOutputFromFile('Content').getContent(); ?>
+
+    <!--3rd party scripts -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <!-- application scripts -->
+    <?!= HtmlService.createHtmlOutputFromFile('Scripts').getContent(); ?>
+</body>
+</html>
+
+
