@@ -36,7 +36,7 @@ function prepareSheet() {
     sheet.getRange('A1:E1').setHorizontalAlignment("center");
 }
 
-function callGitHubAPI(username) {
+function searchGitHubUsers(username) {
     // Call the GitHub API
     var response = UrlFetchApp.fetch("https://api.github.com/search/users?q=" + username );
 
@@ -45,9 +45,91 @@ function callGitHubAPI(username) {
     //Logger.log(json);
     return JSON.parse(json);
 }
-
-function displayUsersData() {
-    var data = callGitHubAPI('ross');
-    var result = data["items"]["id"];
-    Logger.log(result);
+function getUsersInfo(login) {
+    // Call the GitHub API
+    var response = UrlFetchApp.fetch("https://api.github.com/users/" + login );
+    Logger.log(response);
+    return response;
 }
+
+function displayUsersData(username) {
+    var data = searchGitHubUsers(username);
+    var result = data["items"];
+    var total_count = data["total_count"];
+    //var result2 = result[1];
+
+    //Logger.log(result2);
+
+    result.forEach(function(elem,i) {
+        var output = []
+        var login = elem.login;
+        var user_id = elem.id;
+        output.push([login, user_id]);
+        var sheet = SpreadsheetApp.getActiveSheet()
+        var last_row = sheet.getLastRow() +1;
+        //var image = '=image("' + elem["artworkUrl60"] + '",4,60,60)';
+        //var hyperlink = '=hyperlink("' + elem["previewUrl"] + '","Listen to preview")';
+        //output.push([elem["artistName"],elem["collectionName"],elem["trackName"],image,hyperlink]);
+        //sheet.setRowHeight(i+15,65);
+        //Logger.log(last_row);
+
+        sheet.getRange( last_row, 1, 1, 2).setValues(output);
+    });
+}
+
+function displayUserInfo() {
+    var sheet = SpreadsheetApp.getActiveSheet();
+    var last_row = sheet.getLastRow();
+    var output = [];
+    for (var i = 2; i <= last_row; i++) {
+        var login = sheet.getRange(i,1).getValue().toString();
+        //if (login == "") login = 'empty';
+        // Logger.log(login);
+        if (!(login == "")) {
+            Utilities.sleep(4000);
+            var data = getUsersInfo(login);
+
+            //Logger.log(data);
+            //sheet.getRange(i,3).setValue(value);
+        }
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

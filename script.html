@@ -1,3 +1,12 @@
 <script>
+    var send_btn = $('#send');
+    send_btn.click(function() {
+        var input_field = $('#username').val();
+        if (!(input_field == '')) {
+            google.script.run.withSuccessHandler().displayUsersData(input_field);
+        } else {
+            console.log('Empty');
+        }
+    });
 
 </script>
