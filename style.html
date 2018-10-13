@@ -3,7 +3,34 @@
         height: 100%;
         background-color: #fafafa;
     }
+    .content {
+        text-align: center;
+    }
     .title {
         text-align: center;
+    }
+    select {
+        margin-bottom: 15px;
+    }
+    .step-0 .detail-info-section,
+    .step-0 .repos-section {
+
+        opacity: 0;
+    }
+    .detail-info-section,
+    .repos-section {
+        transition: 0.5s;
+        opacity: 0;
+
+    }
+    .step-1 .detail-info-section {
+        opacity: 1;
+    }
+    .step-1 .repos-section {
+        opacity: 0;
+    }
+    .step-2 .detail-info-section,
+    .step-2 .repos-section {
+        opacity: 1;
     }
 </style>

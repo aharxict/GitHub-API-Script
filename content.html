@@ -1,5 +1,24 @@
 <div class="content">
-    <h3 class="title">Welcome to custom Add-On</h3>
-    <input id="username" type="text">
-    <button id="send">Send<button>
+    <h2 class="title">Welcome to custom Add-On</h2>
+    <div class="preparing-section">
+        <h4>Before manipulation please prepare <br> your sheet</h4>
+        <button id="prepare-sheet">Prepare sheet (clean data)</button>
+    </div>
+    <div class="search-section">
+        <h4>Enter GitHub username for searching users (output limit 30 users)</h4>
+        <input id="username" type="text">
+        <button id="search-send">Send</button>
+    </div>
+    <div class="detail-info-section">
+        <h4>Delete unneeded users and push "Get detail info" button to fill other fields</h4>
+        <button id="detail-info-send">Get detail info</button>
+    </div>
+    <div class="repos-section">
+        <h4>Select user to get public repositories</h4>
+        <div>
+            <select id="users-list"></select>
+        </div>
+        <button id="get-repos-send">Get public repositories</button>
+    </div>
+
 </div>

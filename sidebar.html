@@ -4,19 +4,17 @@
     <base target="_top">
     <!-- styles -->
     <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons.css">
-    <?!= HtmlService.createHtmlOutputFromFile('Styles').getContent(); ?>
+    <?!= HtmlService.createHtmlOutputFromFile('style').getContent(); ?>
 </head>
 <body>
 
-    <!-- layout -->
-    <?!= HtmlService.createHtmlOutputFromFile('Content').getContent(); ?>
+<!-- layout -->
+<?!= HtmlService.createHtmlOutputFromFile('content').getContent(); ?>
 
-    <!--3rd party scripts -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<!--3rd party scripts -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-    <!-- application scripts -->
-    <?!= HtmlService.createHtmlOutputFromFile('Scripts').getContent(); ?>
+<!-- application scripts -->
+<?!= HtmlService.createHtmlOutputFromFile('script').getContent(); ?>
 </body>
 </html>
-
-

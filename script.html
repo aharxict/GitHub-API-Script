@@ -1,12 +1,69 @@
 <script>
-    var send_btn = $('#send');
-    send_btn.click(function() {
+    var content_box = $('.content');
+    var prepare_sheet_btn = $('#prepare-sheet');
+    var search_send_btn = $('#search-send');
+    var detail_info_send_btn = $('#detail-info-send');
+    var get_repos_send_btn =$('#get-repos-send');
+
+    prepare_sheet_btn.click(function() {
+        google.script.run.withSuccessHandler().prepareSheet();
+        content_box.addClass('step-0');
+        content_box.removeClass('step-1');
+        content_box.removeClass('step-2');
+
+    });
+    search_send_btn.click(function() {
         var input_field = $('#username').val();
         if (!(input_field == '')) {
             google.script.run.withSuccessHandler().displayUsersData(input_field);
         } else {
             console.log('Empty');
         }
+        content_box.removeClass('step-0');
+        content_box.addClass('step-1');
     });
 
+    detail_info_send_btn.click(function() {
+        google.script.run.withSuccessHandler(function(status) {
+            if (status == true) {
+                createUsersList();
+                content_box.removeClass('step-0');
+                content_box.removeClass('step-1');
+                content_box.addClass('step-2');
+            }
+        }).displayUserInfo();
+
+
+    });
+
+
+
+    //setTimeout(function() {
+    //       createUsersList();
+    //       content_box.removeClass('step-0');
+    //       content_box.removeClass('step-1');
+    //       content_box.addClass('step-2');
+    //       },5000);
+
+    //    });
+
+    get_repos_send_btn.click(function() {
+        var checked_user = $('#users-list').val();
+        google.script.run.withSuccessHandler().displayUserRepos(checked_user);
+
+    });
+
+    function createUsersList() {
+
+        var users_list = google.script.run.withSuccessHandler(function(users_list) {
+            console.log('users_list',users_list);
+            var users_list_container = $('#users-list');
+            users_list_container.empty();
+            users_list.forEach(function(elem,i) {
+                users_list_container.append(new Option(elem, elem));
+            });
+
+        }).getUsersList();
+        console.log('users_list',users_list);
+    }
 </script>
